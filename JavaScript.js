@@ -1,6 +1,3 @@
-let rock;
-let paper;
-let scissors;
 function getComputerChoice() {
     let numberComputer = Math.floor(Math.random(3) * 3);
     switch (numberComputer) {
@@ -29,5 +26,21 @@ function getUserSelection() {
     let lowerNumberUser = stringUser.toLowerCase();
     return lowerNumberUser;
 }
-console.log(getComputerChoice());
-console.log(getUserSelection());
+let computer = getComputerChoice();
+let user = getUserSelection();
+console.log("Computer: "+computer);
+console.log("User: " + user);
+let result = playRound(user, computer);
+function playRound(userPick, computerPick)    {
+    if (userPick === "rock" && computerPick === "scissors") {
+        console.log("You won!");
+    } else if (userPick === "paper" && computerPick === "rock") {
+        console.log("You won!");
+    } else if (userPick === "scissors" && computerPick === "paper") {
+        console.log("You won");
+    } else if (userPick === computerPick)   {
+        console.log("You tied");
+    } else {
+        console.log("You lost");
+    }
+}
