@@ -1,29 +1,28 @@
-let resultSaved = 0;
-let pointsUser = 0;
-let pointsComputer = 0;
+let user = 0;
+let computer = 0;
 let iteration = 0;
 const scissors = document.querySelector("#Scissors");
 scissors.addEventListener("click", function () {
-    let boolean = playGame("scissors", getComputerChoice());
+    let boolean = playGame("scissors",);
     getPoints(boolean);
     iteration++;
-    checkIteration();
+    checkIteration(computer, user);
 });
 
 const rock = document.querySelector("#Rock");
 rock.addEventListener("click", function () {
-    let boolean = playGame("rock", getComputerChoice());
+    let boolean = playGame("rock",);
     getPoints(boolean);
     iteration++;
-    checkIteration();
+    checkIteration(computer, user);
 });
 
 const paper = document.querySelector("#Paper");
 paper.addEventListener("click", function () {
-    let boolean = playGame("paper", getComputerChoice());
+    let boolean = playGame("paper",);
     getPoints(boolean);
     iteration++;
-    checkIteration();
+    checkIteration(computer, user);
 });
 function playGame(userPick) {
     let computer;
@@ -33,10 +32,8 @@ function playGame(userPick) {
     console.log("User: " + userPick);
     result = playRound(userPick, computer);
     if (result === 1) {
-        resultSaved++;
         return false;
     } else if (result === -1) {
-        resultSaved--;
         return true;
     } else {
         return null;
@@ -57,59 +54,59 @@ function getComputerChoice() {
 }
 
 function playRound(userPick, computerPick) {
-    const resultMessage = document.getElementById("resultMessage");
     if (userPick === "rock" && computerPick === "scissors") {
-        resultMessage.textContent = "You won!";
         return 1;
     } else if (userPick === "paper" && computerPick === "rock") {
-        resultMessage.textContent = "You won!";
         return 1;
     } else if (userPick === "scissors" && computerPick === "paper") {
-        resultMessage.textContent = "You won!";
         return 1;
     } else if (userPick === computerPick) {
-        resultMessage.textContent = "You tied!";
         return 0;
     } else {
-        resultMessage.textContent = "You lost!";
         return -1;
     }
 }
 
 function getPoints(boolean) {
     if (boolean === true) {
-        pointsComputer++;
+        computer++;
     } else if (boolean === false) {
-        pointsUser++;
+        user++;
     }
-    displayScore(pointsUser, pointsComputer);
+    displayScore(user, computer);
 }
 function displayScore(user, computer) {
-    const result = document.querySelector("#result");
+    const result = document.querySelector("#currentScore");
     result.innerHTML = "";
     const h2 = document.createElement("h2");
     h2.textContent = "User " + user + " - " + computer + " Computer";
     result.appendChild(h2);
 }
-function checkIteration() {
+function checkIteration(computer, user) {
     if (iteration === 5) {
+        testResult(computer, user, iteration);
         reset();
     } else {
-        testResult(result);
+        testResult(computer, user, iteration);
     }
 }
-function testResult(result) {
-    if (result > 0) {
-        console.log("Congrats you won the game!")
-    } else if (result < 0) {
-        console.log("Unfortunately you lost the game :(")
+function testResult(computer, user) {
+    const finalMessage = document.getElementById("finalMessage");
+    if (iteration === 5) {
+        if (computer < user) {
+            finalMessage.textContent = "Congrats you won the game!";
+        } else if (computer > user) {
+            finalMessage.textContent = "Unfortunately, you lost the game :(";
+        } else if (computer === user) {
+            finalMessage.textContent = "That was close, but ended in a tie";
+        }
     } else {
-        console.log("That was close, but ended on a tie")
+        finalMessage.textContent = "";
     }
 }
 function reset() {
-    pointsUser = 0;
-    pointsComputer = 0;
+    user = 0;
+    computer = 0;
     result = 0;
     iteration = 0;
 }
