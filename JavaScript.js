@@ -1,75 +1,79 @@
 function getComputerChoice() {
     let numberComputer = Math.floor(Math.random(3) * 3);
+    console.log("Valor generat:" + numberComputer);
     switch (numberComputer) {
         case 0:
-            numberComputer = "rock";
-            break;
+            return numberComputer = "rock";
         case 1:
-            numberComputer = "paper";
-            break;
+            return numberComputer = "paper";
         case 2:
-            numberComputer = "scissors";
-            break;
+            return numberComputer = "scissors";
     }
-    return numberComputer;
-}
-function getUserSelection() {
-    let stringUser;
-    while (true) {
-        stringUser = prompt("What do you take? rock/paper/scissors");
-        if (stringUser === "rock" || stringUser === "paper" || stringUser === "scissors") {
-            break;
-        } else {
-            alert("Introduce an available option!");
-        }
-    }
-    let lowerNumberUser = stringUser.toLowerCase();
-    return lowerNumberUser;
 }
 function playRound(userPick, computerPick) {
+    const resultMessage = document.getElementById("resultMessage");
     if (userPick === "rock" && computerPick === "scissors") {
-        console.log("You won!");
+        resultMessage.textContent = "You won!";
         return 1;
     } else if (userPick === "paper" && computerPick === "rock") {
-        console.log("You won!");
+        resultMessage.textContent = "You won!";
         return 1;
     } else if (userPick === "scissors" && computerPick === "paper") {
-        console.log("You won");
+        resultMessage.textContent = "You won!";
         return 1;
     } else if (userPick === computerPick) {
-        console.log("You tied");
+        resultMessage.textContent = "You tied!";
         return 0;
     } else {
-        console.log("You lost");
+        resultMessage.textContent = "You lost!";
         return -1;
     }
 }
-function playGame() {
+function playGame(userPick) {
     let computer;
-    let user;
     let result = 0;
-    let resultSaved = 0;
+    let pointsUser = 0;
+    let pointsComputer = 0;
     for (let i = 0; i < 5; i++) {
         computer = getComputerChoice();
-        user = getUserSelection();
         console.log("Computer: " + computer);
-        console.log("User: " + user);
-        result = playRound(user, computer);
-        if (result === 1)   {
-            resultSaved++;
-        } else if (result === -1)   {
-            resultSaved--;
+        console.log("User: " + userPick);
+        result = playRound(userPick, computer);
+        if (result === 1) {
+            pointsUser++;
+        } else if (result === -1) {
+            pointsComputer++;
         }
+        displayScore(pointsUser, pointsComputer);
     }
     testResult(resultSaved)
 }
-function testResult (Result)  {
-    if(Result > 0)  {
+function testResult(Result) {
+    if (Result > 0) {
         console.log("Congrats you won the game!")
-    } else if (Result < 0)  {
+    } else if (Result < 0) {
         console.log("Unfortunately you lost the game :(")
     } else {
         console.log("That was close, but ended on a tie")
     }
 }
-playGame();
+function displayScore(user, computer)  {
+    const result = document.querySelector("#result");
+    result.innerHTML = "";
+    const h2 = document.createElement("h2");
+    h2.textContent = "User " + user + " - " + computer + " Computer";
+    result.appendChild(h2);
+}
+const scissors = document.querySelector("#Scissors");
+scissors.addEventListener("click", function () {
+    playGame("scissors");
+});
+
+const rock = document.querySelector("#Rock");
+rock.addEventListener("click", function () {
+    playGame("rock");
+});
+const paper = document.querySelector("#Paper");
+paper.addEventListener("click", function () {
+    playGame("paper");
+});
