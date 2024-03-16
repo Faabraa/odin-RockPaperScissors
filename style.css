@@ -1,0 +1,48 @@
+html {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(56, 133, 138);
+    color: white;
+    font-size: 35px;
+}
+
+body {
+    display: flex;
+    flex: auto;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.rock {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.bttContainer>* {
+    margin-right: 20px;
+}
+
+.score {
+    display: flex;
+}
+
+button {
+    height: 100px;
+    width: 100px;
+    font-size: 75px;
+    background-color: grey;
+    border: 0;
+}

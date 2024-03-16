@@ -63,23 +63,61 @@ function getComputerChoice() {
 }
 /**
  * Compares both picks and returns the winner
- * @param {int} userPick 
- * @param {int} computerPick 
+ * @param {String} userPick 
+ * @param {String} computerPick 
  * @returns {int} Winner, 1 - win, -1 - lose, 0 - tie
  */
 function playRound(userPick, computerPick) {
     if (userPick === "rock" && computerPick === "scissors") {
+        printComputerPick(computerPick);
         return 1;
     } else if (userPick === "paper" && computerPick === "rock") {
+        printComputerPick(computerPick);
         return 1;
     } else if (userPick === "scissors" && computerPick === "paper") {
+        printComputerPick(computerPick);
         return 1;
     } else if (userPick === computerPick) {
+        printComputerPick(computerPick);
         return 0;
     } else {
         return -1;
     }
 }
+/**
+ * Shows the computer pick
+ * @param {String} computerPick 
+ */
+function printComputerPick(computerPick) {
+    const resultComputer = document.querySelector("#computerChoicee");
+    switch (computerPick) {
+        case "rock":
+            resultComputer.textContent = "🪨";
+            styleEmoji(resultComputer);            
+            break;
+        case "paper":
+            resultComputer.textContent = "🗞️";
+            styleEmoji(resultComputer);            
+            break;
+        case "scissors":
+            resultComputer.textContent = "✂️";
+            styleEmoji(resultComputer);            
+            break;
+    }
+}
+/**
+ * Styles the emoji
+ * @param {} resultComputer 
+ */
+function styleEmoji(resultComputer) {
+    resultComputer.style.height = "100px";
+    resultComputer.style.width = "100px";
+    resultComputer.style.fontSize = "75px";
+    resultComputer.style.backgroundColor = "grey";
+    resultComputer.style.border = "0";
+    resultComputer.style.marginBottom = "10px";
+}
+
 /**
  * Gives the point to the winner
  * @param {boolean} boolean true - lose, false - win, null - tie

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <style>
-        body{
-            background-color: black;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <button id="Scissors">Scissors</button>
-    <button id="Rock">Rock</button>
-    <button id="Paper">Paper</button>
+    <div class="container">
+        <div class="bttContainer">
+            <button class="btt" id="Scissors">✂️</button>
+            <button class="btt" id="Paper">🗞️</button>
+            <button id="Rock" class="btt">🪨</button>
+        </div>
+            <div id="currentScore"></div>
+            <div id="computerChoicee"></div>
+            <div id="finalMessage"></div>
+    </div>
     <script src="JavaScript.js"></script>
-    <div id = "currentScore"></div>
-    <div id = "finalMessage"></div>
 </body>
+
 </html>
