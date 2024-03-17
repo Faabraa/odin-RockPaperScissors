@@ -5,14 +5,7 @@ html {
     color: white;
     font-size: 35px;
 }
-
 body {
-    display: flex;
-    flex: auto;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
     margin: 0;
 }
 
@@ -22,6 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: calc(100vh - 200px);
 }
 
 .rock {
@@ -45,4 +39,26 @@ button {
     font-size: 75px;
     background-color: grey;
     border: 0;
+}
+.icon   {
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    border-radius: 50% ;
+    margin-right: 10px;
+    object-fit: cover;
+}
+h6  {
+    height: 40px;
+    margin-top: 0;
+    padding-left: 10px;
+}
+header {
+    display: flex;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    height: 40px;
+    justify-content: space-between;
 }
